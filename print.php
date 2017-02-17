@@ -118,7 +118,7 @@ table{
         </table>
         </td>
         <td style="width:50%">
-        <table  border="0.3px" cellspacing="0" style="width:100%" align="right" id="table2">
+        <table  border="0.4px" cellspacing="0" style="width:100%" align="right" id="table2">
             <tr>
                 <th class="pad" style="width:20%"> S.No </th>
                 <th class="pad" style="width:50%"> Particulars </th>
