@@ -3,17 +3,23 @@
 	require_once('connect.php');
 	$result = mysqli_query($conn,"select * from tbl_invoice where invoice_id = $_GET[id]");
     $row = mysqli_fetch_assoc($result);
+
+    // Constants
+    $email = "example@example.com";
+    $logo_path = "logo/logo.png";
+    $address = "Intecons Software Labs, Bangalore.";
+
  ?>
 <?php
 ob_start(); 
 ?> 
 <style type="text/css">
-td { 
-    padding: 10px;
+td.pad { 
+    padding: 8px;
     text-align:center;
 }
-th { 
-    padding: 10px;
+th.pad { 
+    padding: 8px;
     text-align:center;
 }
 
@@ -39,8 +45,28 @@ th {
     margin-right:0px;
     margin-top:18px;
 }
+.help-text{
+    font-size: 11pt;
+}
 
+table{
+    padding:0px;
+    height:40%;
+}
 
+#table0{
+    border: solid 1px;
+    //border-top:0.5px;
+    //border-bottom:0.5px;
+    width: 100%;
+    padding:0px;   
+}
+#table1{
+   
+}
+#table2{
+
+}
 
 </style>
 <page backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm"> 
@@ -49,42 +75,74 @@ th {
 
 <page_footer> 
 </page_footer>
-
+<br>
 <div  class="logo">
-    <img src="logo/logo.png" alt="logo"  width="100" height="100" >
-</div><br><br>
+    <img src="<?=$logo_path?>" alt="logo"  width="100" height="100" >
+</div><br><br><Br>
 <div class="receipt-header">
     <p class="text-block">PAYMENT RECEIPT</p>
 </div>
 <br><br>
 
-	<table align="center" style="width:100%;" border="0.5" cellspacing="0">
-    <tr class="header-">
-        <th style="width:15%;"> Order.No. </th>
-        <th style="width:25%;"> Particulars </th>
-        <th style="width:15%;"> Quantity </th>
-        <th style="width:15%;"> Price </th>
-        <th style="width:15%;"> Discount </th>
-        <th style="width:15%;"> Sub-Total </th>
-    </tr>
-    <tr>
-        <td style="width:15%;"> <?= $row['order_number']?> </td>
-        <td style="width:25%;"> <?= $row['recharge_number'] ?> </td>
-        <td style="width:15%;"> <?= $row['quantity'] ?> </td>
-        <td style="width:15%;"> <?= $row['unit_price'] ?> </td>
-        <td style="width:15%;"> <?= $row['discount'] ?> </td>
-        <td style="width:15%;"> <?= $row['gross_total'] ?> </td>
-    </tr>
-    <tr>
-        <th colspan="5" style="text-align:right;"> Total </th>
-        <th> <?= $row['gross_total'] ?> </th>
-    </tr>
+    <br>
 
-	</table>
+	<div class="tables-block">
+    <table cellspacing="0" id="table0"  style="padding:0px;">
+    <tr>
+        <td style="width:50%">
+        <table  cellspacing="0" style="width:100%" align="left" id="table1">
+            <tr>
+                <th class="pad" style="width:50%;text-align:left;"> Order ID: </th>
+                <th class="pad" style="width:10%;text-align:center;">: </th>
+                <td class="pad" style="width:40%;text-align:left;"> <?= $row['order_number'] ?> </td>
+
+            </tr>
+            <tr>
+                <th class="pad" style="width:50%;text-align:left;"> Recharge Date: </th>
+                <th class="pad" style="width:10%;text-align:center;">: </th>
+                <td class="pad" style="width:40%;text-align:left;"> <?= $row['date'] ?> </td>
+            </tr>
+            <tr>
+                <th class="pad" style="width:50%;text-align:left;"> Recharge No: </th>
+                <th class="pad" style="width:10%;text-align:center;">: </th>
+                <td class="pad" style="width:40%;text-align:left;"> <?= $row['recharge_number'] ?> </td>
+            </tr>
+        </table>
+        </td>
+        <td style="width:50%">
+        <table border="0.7" cellspacing="0" style="width:100%" align="right" id="table2">
+            <tr>
+                <th class="pad" style="width:20%"> S.No </th>
+                <th class="pad" style="width:50%"> Particulars </th>
+                <th class="pad" style="width:30%"> Amount </th>
+            </tr>
+            <tr>
+                <td class="pad" style="width:20%"> 1 </td>
+                <td class="pad" style="width:50%"> Recharge Amt </td>
+                <td class="pad" style="width:30%">Rs. <?=$row['unit_price']?> </td>
+            </tr>
+            <tr>
+                <td class="pad" style="width:20%"> 2 </td>
+                <td class="pad" style="width:50%"> Discount </td>
+                <td class="pad" style="width:30%">Rs. -<?=$row['discount']?> </td>
+            </tr>
+            <tr>
+                <td class="pad" style="width:70%;text-align:right;" colspan="2"> Total Amount</td>
+                
+                <td class="pad" style="width:30%;text-align:center;">Rs. <?= $row['gross_total'] ?> </td>
+            </tr>
+        </table>
+        </td>
+        </tr>
+    </table>
+    </div>
     <br><br>
     <div class="help-text">
         <p>
-            Contact: example@example.com
+           Contact: <?= $email ?>
+        </p>
+        <p>
+            Address: <?=$address ?>
         </p>
     </div>
 
