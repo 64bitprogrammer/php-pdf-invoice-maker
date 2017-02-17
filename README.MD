@@ -1,0 +1,1 @@
+# Gerenrates invoice in PDF format using html2pdf library.

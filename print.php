@@ -1,3 +1,4 @@
+<!doctype html>
 <?php
 	require_once('vendor/autoload.php');
 	require_once('connect.php');
@@ -51,21 +52,22 @@ th.pad {
 
 table{
     padding:0px;
-    height:40%;
+    height:40%;   
 }
 
 #table0{
-    border: solid 1px;
-    //border-top:0.5px;
-    //border-bottom:0.5px;
+    border-top:0.5px;
+    border-bottom:0.5px;
     width: 100%;
-    padding:0px;   
+    padding:0px;
+    
 }
 #table1{
-   
+    border:solid 0.5px;
+    border-collapse:collapse;  
 }
 #table2{
-
+    border-collapse:collapse; 
 }
 
 </style>
@@ -91,6 +93,11 @@ table{
     <tr>
         <td style="width:50%">
         <table  cellspacing="0" style="width:100%" align="left" id="table1">
+        <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             <tr>
                 <th class="pad" style="width:50%;text-align:left;"> Order ID: </th>
                 <th class="pad" style="width:10%;text-align:center;">: </th>
@@ -107,10 +114,11 @@ table{
                 <th class="pad" style="width:10%;text-align:center;">: </th>
                 <td class="pad" style="width:40%;text-align:left;"> <?= $row['recharge_number'] ?> </td>
             </tr>
+            
         </table>
         </td>
         <td style="width:50%">
-        <table border="0.7" cellspacing="0" style="width:100%" align="right" id="table2">
+        <table  border="0.3px" cellspacing="0" style="width:100%" align="right" id="table2">
             <tr>
                 <th class="pad" style="width:20%"> S.No </th>
                 <th class="pad" style="width:50%"> Particulars </th>
